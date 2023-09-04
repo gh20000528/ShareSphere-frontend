@@ -1,7 +1,7 @@
 import Home from './page/home/Home'
 import Login from './page/login/Login'
 import Register from './page/register/Register'
-import LeftBar from './component/leftBar/LeftBar'
+import LeftBar from './component/leftBar/Leftbar'
 import Navbar from './component/navbar/Navbar'
 import RightBar from './component/rightbar/RightBar'
 import Profile from './page/profile/Profile'
@@ -22,7 +22,9 @@ function App() {
         <Navbar/>
         <div style={{display:"flex"}}>
           <LeftBar/>
-          <Outlet/>
+          <div style={{flex: 6}}>
+            <Outlet/>
+          </div>
           <RightBar/>
         </div>
       </div>
