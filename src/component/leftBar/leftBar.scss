@@ -1,5 +1,7 @@
+@import "../../App.scss";
+
 .leftBar {
-  // @include themify($themes) {
+  @include themify($themes) {
     flex: 2;
     position: sticky;
     top: 70px;
@@ -8,9 +10,9 @@
     background-color: themed("bg");
     color: themed("textColor");
 
-  //   @include mobile{
-  //     display: none;
-  //   }
+    @include mobile{
+      display: none;
+    }
 
     &::-webkit-scrollbar {
       display: none;
@@ -68,3 +70,4 @@
       }
     }
   }
+}

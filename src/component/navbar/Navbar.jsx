@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import HomeIcon from '@mui/icons-material/Home';
 import NightlightIcon from '@mui/icons-material/Nightlight';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
@@ -9,8 +9,10 @@ import PersonIcon from '@mui/icons-material/Person';
 import SearchIcon from '@mui/icons-material/Search';
 import './navbar.scss'
 import { Link } from '@mui/material';
+import { DarkModeContext } from '../../context/darkModeContext';
 
 const NavBar = () => {
+	const { toggle, darkMode } = useContext(DarkModeContext)
   return (
     <div className='navbar'>
       <div className='left'>
@@ -18,7 +20,7 @@ const NavBar = () => {
 					<span>ShareSphere</span>
 				</Link>
 				<HomeIcon/>
-				<NightlightIcon/>
+				{darkMode ? <WbSunnyIcon onClick={toggle}/> : <NightlightIcon onClick={toggle}/>}
 				<GridViewIcon/>
 				<div className='search'>
 					<SearchIcon/>

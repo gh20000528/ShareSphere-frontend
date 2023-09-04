@@ -5,20 +5,24 @@ import LeftBar from './component/leftBar/Leftbar'
 import Navbar from './component/navbar/Navbar'
 import RightBar from './component/rightbar/RightBar'
 import Profile from './page/profile/Profile'
-import './App.css';
+import './App.scss';
 import {
   createBrowserRouter,
   Navigate,
   Outlet,
   RouterProvider,
 } from "react-router-dom";
+import { useContext } from 'react'
+import { DarkModeContext } from './context/darkModeContext'
 
 function App() {
 
   const currentUse = true
+
+  const { darkMode } = useContext(DarkModeContext)
   const Layout = () => {
     return(
-      <div>
+      <div className={`theme-${darkMode ? "dark" : "light"}`}>
         <Navbar/>
         <div style={{display:"flex"}}>
           <LeftBar/>
