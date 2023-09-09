@@ -8,6 +8,7 @@
     height: calc(100vh - 70px);
     overflow: scroll;
     background-color: themed("bgSoft");
+    
 
     @include mobile{
       display: none;
@@ -30,6 +31,7 @@
         padding: 20px;
         margin-bottom: 20px;
         background-color: themed("bg");
+        border-radius: 5px;
 
         span {
           color: gray;
