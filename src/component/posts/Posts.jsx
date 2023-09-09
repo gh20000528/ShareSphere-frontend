@@ -5,7 +5,7 @@ const Posts = () => {
         {
         id:1,
         name: "han sheng",
-        userId: "1",
+        userId: "2",
         profilePic:"https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600",
         desc:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur officiis perferendis non. Voluptas, quo ut!",
         img:"https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600"
@@ -14,6 +14,38 @@ const Posts = () => {
           id:2,
           name: "han sheng",
           userId: "1",
+          profilePic:"https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600",
+          desc:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur officiis perferendis non. Voluptas, quo ut!",
+          img:"https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600"
+        },
+        {
+          id:2,
+          name: "han sheng",
+          userId: "1",
+          profilePic:"https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600",
+          desc:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur officiis perferendis non. Voluptas, quo ut!",
+          img:"https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600"
+        },
+        {
+          id:2,
+          name: "han sheng",
+          userId: "2",
+          profilePic:"https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600",
+          desc:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur officiis perferendis non. Voluptas, quo ut!",
+          img:"https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600"
+        },
+        {
+          id:2,
+          name: "han sheng",
+          userId: "1",
+          profilePic:"https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600",
+          desc:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur officiis perferendis non. Voluptas, quo ut!",
+          img:"https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600"
+        },
+        {
+          id:2,
+          name: "han sheng",
+          userId: "2",
           profilePic:"https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600",
           desc:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur officiis perferendis non. Voluptas, quo ut!",
           img:"https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600"
