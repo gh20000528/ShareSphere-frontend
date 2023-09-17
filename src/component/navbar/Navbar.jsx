@@ -8,7 +8,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import PersonIcon from '@mui/icons-material/Person';
 import SearchIcon from '@mui/icons-material/Search';
 import './navbar.scss'
-import { Link } from '@mui/material';
+import {Link} from "react-router-dom"
 import { DarkModeContext } from '../../context/darkModeContext';
 import { AuthContext } from '../../context/authContext'
 
@@ -35,8 +35,11 @@ const NavBar = () => {
 				<NotificationsIcon/>
 				<div className='user'>
 					<img src={ currentUser.profilePic } alt="" />
-					<span>{ currentUser.name }</span>
+					<Link to={`/profile/${currentUser.userId}`}>
+						<span className='name'>{currentUser.name}</span>
+					</Link>
 				</div>
+
 			</div>
     </div>
   )
