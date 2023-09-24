@@ -17,7 +17,7 @@ const Post = ({post}) => {
 	}
   return (
     <div className='post'>
-      <div className="container">
+      <div className="container"> 
 				<div className="user">
 					<div className="userInfo">
 							<img src={post.img} alt="" />
