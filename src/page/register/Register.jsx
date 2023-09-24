@@ -26,14 +26,19 @@ const Register = () => {
       setErr(err.response.data)
     }
 
-    setInputs('')
+    setInputs({
+      username:'',
+      email:'',
+      password:'',
+      name:''
+    })
   }
 
   return (
     <div className='register'>
       <div className='card'>
         <div className='left'>
-          <h1>登入</h1>
+          <h1>註冊</h1>
           <form action="">
             <input type="text" placeholder='UserName...' name="username" onChange={changeHandler}/>
             <input type="email" placeholder='Email...' name="email" onChange={changeHandler}/>

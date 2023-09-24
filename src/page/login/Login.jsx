@@ -1,14 +1,33 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState} from 'react'
 import './login.scss'
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import { AuthContext } from '../../context/authContext'
 
 const Login = () => {
 
+  const [inputs, setInputs] = useState({
+    username:'',
+    password:'',
+  })
+
+  const [err, setErr] = useState(null)
+
+  const navigate = useNavigate()
+
+  const changeHandler = (e) => {
+    setInputs((prev) => ({...prev, [e.target.name]: e.target.value}))
+  }
+
   const { login } = useContext(AuthContext)
 
-  const loginHandler = () => {
-    login()
+  const loginHandler = async (e) => {
+    e.preventDefault()
+    try{
+      await login(inputs)
+      navigate("/")
+    }catch(err){
+      setErr(err.response.data)
+    }
   }
 
   return (
@@ -25,8 +44,9 @@ const Login = () => {
         <div className='left'>
           <h1>登入</h1>
           <form action="">
-            <input type="text" placeholder='UserName...'/>
-            <input type="password" placeholder='password'/>
+            <input type="text" placeholder='UserName...' name="username" onChange={changeHandler}/>
+            <input type="password" placeholder='password' name="password" onChange={changeHandler}/>
+            {err && err}
             <button onClick={loginHandler}>登入</button>
           </form>
         </div>
