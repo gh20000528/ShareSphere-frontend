@@ -9,7 +9,7 @@ const Posts = () => {
       return res.data;
     })
   )
-  console.log(data);
+  console.log(error);
 
   return (
     <div className=''>
