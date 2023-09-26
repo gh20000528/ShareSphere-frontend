@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
@@ -8,13 +8,36 @@ import './post.scss'
 import {Link} from "react-router-dom"
 import Comments from '../comments/Comments'
 import moment from 'moment'
-
+import { makeRequest } from '../../axios'
+import { AuthContext } from '../../context/authContext';
+import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 const Post = ({post}) => {
 	const [showComment, setShowComment] = useState(false)
-	const liked = false
+	const { currentUser } = useContext(AuthContext)
+
+	const { isLoading, error, data } = useQuery(['likes', post.id], ()=> 
+	makeRequest.get("/likes?postId=" + post.id).then((res) => {
+		return res.data;
+	}))
 
 	const showHandler = () => {
 		setShowComment(!showComment)
+	}
+
+	const queryClient = useQueryClient()
+
+  const mutation = useMutation((liked) => {
+    if(liked) return makeRequest.delete("/likes?postId=" + post.id)
+		return makeRequest.post("/likes", {postId: post.id})
+  },{
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries(['likes'])
+    },
+  })
+
+	const likeHandler = () => {
+		mutation.mutate(data.includes(currentUser.id))
 	}
   return (
     <div className='post'>
@@ -37,8 +60,10 @@ const Post = ({post}) => {
 				</div>
 				<div className="info">
 					<div className="item">
-						{liked? <FavoriteOutlinedIcon/>: <FavoriteBorderOutlinedIcon/> }
-						12 Likes
+						{ isLoading ? "loading" :
+						data.includes(currentUser.id)? 
+						<FavoriteOutlinedIcon style={{color: "red"}} onClick={likeHandler}/>: <FavoriteBorderOutlinedIcon onClick={likeHandler}/> }
+						{data?.length} Likes
 					</div>
 					<div className="item" onClick={showHandler}>
 						<TextsmsOutlinedIcon/>
