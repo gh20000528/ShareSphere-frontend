@@ -1,41 +1,59 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import '../comments/comments.scss'
 import { AuthContext } from '../../context/authContext'
+import { useQuery } from '@tanstack/react-query'
+import { makeRequest } from '../../axios'
+import moment from 'moment'
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-const Comments = () => {
+
+const Comments = ({ postId }) => {
+  const [desc, setDesc] = useState("")
 
 	const {currentUser} = useContext(AuthContext)
-	const comments = [
-		{
-			id:1,
-			name: "cpy",
-			desc:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur officiis perferendis non. Voluptas, quo ut!",
-			userIs:"2",
-			profilePicture:"https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600"
-			},
-		{
-			id:2,
-			name: "cpy",
-			desc:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur officiis perferendis non. Voluptas, quo ut!",
-			userIs:"2",
-			profilePicture:"https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600"
-		},
-	]
+	const { isLoading, error, data } = useQuery(['comment'], ()=> 
+	makeRequest.get("/comment?postId=" + postId).then((res) => {
+		return res.data;
+	}))
+
+
+	const queryClient = useQueryClient()
+
+	const mutation = useMutation((newComment) => {
+	  return makeRequest.post("/comment", newComment)
+	},{
+	  onSuccess: () => {
+		// Invalidate and refetch
+		queryClient.invalidateQueries(['comment'])
+	  },
+	})
+  
+	const clickHandle = async (e) => {
+	  e.preventDefault()
+	  mutation.mutate({desc , postId})
+    setDesc("")
+	}
   return (
     <div className='comments'>
 			<div className="write">
         <img src={currentUser.profilePic} alt="" />
-        <input type="text" placeholder="write a comment" />
-        <button>Send</button>
+        <input 
+          type="text" 
+          placeholder="write a comment"
+          value={desc}
+          onChange={(e) => setDesc(e.target.value)}
+          />
+        <button onClick={clickHandle}>Send</button>
       </div>
-      { comments.map(comment => (
+      { isLoading ? "loading":
+	   data.map(comment => (
 				 <div className="comment">
 					<img src={comment.profilePicture} alt="" />
 					<div className="info">
 						<span>{comment.name}</span>
 						<p>{comment.desc}</p>
 					</div>
-					<span className="date">1 hour ago</span>
+					<span className="date">{moment(comment.createdAt).fromNow()}</span>
 			 </div>
 			))}
     </div>
