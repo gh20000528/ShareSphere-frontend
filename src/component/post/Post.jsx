@@ -8,8 +8,8 @@ import './post.scss'
 import {Link} from "react-router-dom"
 import Comments from '../comments/Comments'
 import moment from 'moment'
-import { makeRequest } from '../../axios'
 import { AuthContext } from '../../context/authContext';
+import { makeRequest } from '../../axios'
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 const Post = ({post}) => {
 	const [showComment, setShowComment] = useState(false)
