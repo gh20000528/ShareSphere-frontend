@@ -9,7 +9,7 @@ const Posts = ({userId}) => {
       return res.data;
     })
   )
-    console.log(data);
+    // console.log(data);
   return (
     <div className=''>
       {error

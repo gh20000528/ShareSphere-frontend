@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import './profile.scss'
 import PlaceIcon from "@mui/icons-material/Place";
 import Posts from '../../component/posts/Posts'
@@ -6,11 +6,12 @@ import { makeRequest } from '../../axios'
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import { useLocation } from 'react-router-dom';
 import { AuthContext } from '../../context/authContext';
-
+import Update from '../../component/update/Update'
 const Profile = () => {
 
   const userId = parseInt(useLocation().pathname.split("/")[2])
   const { currentUser } = useContext(AuthContext)
+  const [ showUpdate, setShowUpdate ] = useState(false)
 
   const { isLoading, error, data } = useQuery(['user'], ()=> 
 	makeRequest.get("/users/find/" + userId).then((res) => {
@@ -45,8 +46,8 @@ const Profile = () => {
       { isLoading ?
         'loading':
         <div className="images">
-          <img src={ data.covoerPic } className='cover' alt=''/>
-          <img src={ data.profilePic } className='profilePic' alt=''/>
+          <img src={"/upload/" + data.covoerPic } className='cover' alt=''/>
+          <img src={"/upload/" + data.profilePic } className='profilePic' alt=''/>
         </div>
       }
       <div className="profileContainer">
@@ -63,7 +64,7 @@ const Profile = () => {
             { rSisLoading ?
             "loading" :  
             userId === currentUser.id ?
-            (<button className='follow'>更新個人資料</button>):
+            (<button className='follow' onClick={()=> setShowUpdate(true)}>更新個人資料</button>):
             (<button className='follow' onClick={followHandler}>{relationshipData.includes(currentUser.id) ? 
               "已追蹤" : 
               "追蹤"
@@ -74,6 +75,7 @@ const Profile = () => {
         </div>
         <Posts userId = {userId}/>
       </div>
+      {showUpdate && <Update setShowUpdate={setShowUpdate} user={data}/> }
     </div>
   )
 }

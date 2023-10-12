@@ -2,6 +2,7 @@
 
 .profile {
   @include themify($themes) {
+    position: relative;
     background-color: themed("bgSoft");
 
     .images {
