@@ -20,6 +20,7 @@ const Post = ({post}) => {
 		return res.data;
 	}))
 
+	console.log();
 	const showHandler = () => {
 		setShowComment(!showComment)
 	}
@@ -35,7 +36,7 @@ const Post = ({post}) => {
       queryClient.invalidateQueries(['likes'])
     },
   })
-
+	
 	const likeHandler = () => {
 		mutation.mutate(data.includes(currentUser.id))
 	}
@@ -44,7 +45,7 @@ const Post = ({post}) => {
       <div className="container"> 
 				<div className="user">
 					<div className="userInfo">
-							<img src={post.img} alt="" />
+							<img src={"/upload/" + post.profilePic} alt="" />
 							<div className='details'>
 								<Link to={`/profile/${post.userId}`}>
 										<span className='name'>{post.name}</span>
@@ -56,7 +57,7 @@ const Post = ({post}) => {
 				</div>
 				<div className="content">
 					<p>{post.desc}</p>
-					<img src={"./upload/" + post.img} alt="" />
+					<img src={"/upload/" + post.img} alt="" />
 				</div>
 				<div className="info">
 					<div className="item">

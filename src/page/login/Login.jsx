@@ -30,7 +30,7 @@ const Login = () => {
       setErr(err.response.data)
     }
   }
-
+  
   return (
     <div className='login'>
       <div className='card'>
@@ -45,8 +45,8 @@ const Login = () => {
         <div className='left'>
           <h1>登入</h1>
           <form action="">
-            <input type="text" placeholder='UserName...' name="username" onChange={changeHandler}/>
-            <input type="password" placeholder='password' name="password" onChange={changeHandler}/>
+            <input type="text" placeholder='暱稱...' name="username" onChange={changeHandler}/>
+            <input type="password" placeholder='信箱' name="password" onChange={changeHandler}/>
             {err && err}
             <button onClick={loginHandler}>登入</button>
           </form>

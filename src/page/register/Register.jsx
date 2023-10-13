@@ -41,9 +41,9 @@ const Register = () => {
           <h1>註冊</h1>
           <form action="">
             <input type="text" placeholder='UserName...' name="username" onChange={changeHandler}/>
+            <input type="text" placeholder='name' name="name" onChange={changeHandler}/>
             <input type="email" placeholder='Email...' name="email" onChange={changeHandler}/>
             <input type="password" placeholder='password' name="password" onChange={changeHandler}/>
-            <input type="text" placeholder='name' name="name" onChange={changeHandler}/>
             { err && err }
             <button onClick={registerHandler}>註冊</button>
           </form>

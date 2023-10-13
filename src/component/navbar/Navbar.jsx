@@ -15,27 +15,26 @@ import { AuthContext } from '../../context/authContext'
 const NavBar = () => {
 	const { toggle, darkMode } = useContext(DarkModeContext)
 	const { currentUser } = useContext(AuthContext)
+
+	console.log(currentUser);
   return (
     <div className='navbar'>
       <div className='left'>
 				<Link to={'/'} style={{textDecoration:'none'}}>
 					<span>ShareSphere</span>
 				</Link>
-				<HomeIcon/>
 				{darkMode ? <WbSunnyIcon onClick={toggle}/> : <NightlightIcon onClick={toggle}/>}
-				<GridViewIcon/>
 				<div className='search'>
 					<SearchIcon/>
 					<input type="text" placeholder='search...' />
 				</div>
 			</div>
 			<div className='right'>
-				<PersonIcon/>
 				<EmailIcon/>
 				<NotificationsIcon/>
 				<div className='user'>
-					<img src={ currentUser.profilePic } alt="" />
-					<Link to={`/profile/${currentUser.userId}`}>
+					<img src={ "/upload/" + currentUser.profilePic } alt="" />
+					<Link to={`/profile/${currentUser.id}`}>
 						<span className='name'>{currentUser.name}</span>
 					</Link>
 				</div>

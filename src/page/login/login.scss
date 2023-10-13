@@ -1,9 +1,28 @@
 .login{
   height: 100vh;
-  background-color: rgb(193, 190, 255);
+  background:linear-gradient(45deg, #d2001a,#7462ff,#f48e21,#23d5ab);
+  background-size: 300% 300%;
+  animation: color 12s ease-in-out infinite;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  
+  @keyframes color {
+    0%{
+      background-position: 50% 0%;
+    }
+    50%{
+      background-position: 50% 100%;
+    }
+    100%{
+      background-position: 50% 0%;
+    }
+  }
   .card{
     display: flex;
     background-color: #fff;
@@ -13,8 +32,8 @@
     
     .right{
       flex: 1;
-      background: linear-gradient(rgba(39, 11, 96, 0.5), rgba(39, 11, 96, 0.5)),
-        url("https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600")
+      background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3)),
+        url("https://i.pinimg.com/564x/b5/3e/1c/b53e1c921aca9e6a105a8e1bb5e0bd7f.jpg")
           center;
       background-size: cover;
       padding: 50px;

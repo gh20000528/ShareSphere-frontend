@@ -1,6 +1,8 @@
 .register{
   height: 100vh;
-  background-color: rgb(193, 190, 255);
+  background:linear-gradient(45deg, #d2001a,#7462ff,#f48e21,#23d5ab);
+  background-size: 300% 300%;
+  animation: color 12s ease-in-out infinite;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,7 +15,7 @@
     
     .right{
       flex: 1;
-      background: linear-gradient(rgba(39, 11, 96, 0.5), rgba(39, 11, 96, 0.5)),
+      background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)),
         url("https://images.pexels.com/photos/4881619/pexels-photo-4881619.jpeg?auto=compress&cs=tinysrgb&w=1600")
           center;
       background-size: cover;
